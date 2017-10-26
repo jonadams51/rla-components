@@ -58,10 +58,7 @@ const theme = {
         borderColor: colors.lightGray,
         padding: spacing.padding,
         margin: spacing.margin,
-        radius: spacing.radius,
-        error: {
-            borderColor: colors.alert
-        }
+        radius: spacing.radius
     },
     modal: {
         padding: spacing.padding,

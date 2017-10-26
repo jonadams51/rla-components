@@ -25,7 +25,7 @@ const StyledInput = styled.input`
             max-width: ${props => (props.expanded ? "100%" : "10em")};
             height: ${props => props.theme.input.sizes[props.size]}em;
             border-radius: ${props => props.theme.input.radius}em;
-            border: 1px solid ${props => (props.error ? props.theme.input.error.borderColor : props.theme.input.borderColor)};
+            border: 1px solid ${props => (props.status ? props.theme.input.colors[props.status] : props.theme.input.borderColor)};
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             padding: 0 ${props => props.theme.input.sizes[props.size] / 4}em;
             margin: 0
@@ -42,7 +42,8 @@ const InputField = ({
     readOnly,
     meta,
     onChange,
-    error,
+    status,
+    statusMessage,
     ...rest
 }) => {
     let fieldOptions = {};
@@ -51,8 +52,8 @@ const InputField = ({
         fieldOptions["readOnly"] = "readOnly";
     }
 
-    if (error) {
-        fieldOptions["error"] = "error";
+    if (status) {
+        fieldOptions["status"] = "status";
     }
 
     const handleChange = event => {
@@ -75,7 +76,7 @@ const InputField = ({
                 onChange={handleChange}
                 {...rest}
             />
-            {error && <span>{error}</span>}
+            {statusMessage && <span>{statusMessage}</span>}
         </div>
     );
 };
@@ -92,7 +93,8 @@ InputField.propTypes = {
     type: PropTypes.string,
     label: PropTypes.string,
     readOnly: PropTypes.bool,
-    error: PropTypes.string
+    status: PropTypes.string,
+    statusMessage: PropTypes.string
 };
 
 InputField.defaultProps = {
@@ -101,7 +103,8 @@ InputField.defaultProps = {
     block: true,
     type: "text",
     readOnly: false,
-    error: ""
+    status: "",
+    statusMessage: ""
 };
 
 export default InputField;
