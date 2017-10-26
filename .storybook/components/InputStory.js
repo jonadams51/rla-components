@@ -77,6 +77,16 @@ storiesOf("Form Inputs", module)
                         console.log(value);
                     }}
                 />
+                <InputField
+                    name="test"
+                    defaultValue="large"
+                    size="large"
+                    onChange={value => {
+                        console.log(value);
+                    }}
+                    status="alert"
+                    statusMessage="Required"
+                />
             </div>
         ))
     )

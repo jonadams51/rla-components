@@ -26341,10 +26341,7 @@ var theme = {
         borderColor: colors.lightGray,
         padding: spacing.padding,
         margin: spacing.margin,
-        radius: spacing.radius,
-        error: {
-            borderColor: colors.alert
-        }
+        radius: spacing.radius
     },
     modal: {
         padding: spacing.padding,
@@ -27115,7 +27112,7 @@ var StyledInput = _styledComponents2.default.input(_templateObject, function (pr
     }, function (props) {
         return props.theme.input.radius;
     }, function (props) {
-        return props.error ? props.theme.input.error.borderColor : props.theme.input.borderColor;
+        return props.status ? props.theme.colors[props.status] : props.theme.input.borderColor;
     }, function (props) {
         return props.theme.input.sizes[props.size] / 4;
     }, function (props) {
@@ -27133,8 +27130,9 @@ var InputField = function InputField(_ref) {
         readOnly = _ref.readOnly,
         meta = _ref.meta,
         onChange = _ref.onChange,
-        error = _ref.error,
-        rest = _objectWithoutProperties(_ref, ["type", "name", "label", "readOnly", "meta", "onChange", "error"]);
+        status = _ref.status,
+        statusMessage = _ref.statusMessage,
+        rest = _objectWithoutProperties(_ref, ["type", "name", "label", "readOnly", "meta", "onChange", "status", "statusMessage"]);
 
     var fieldOptions = {};
 
@@ -27142,8 +27140,8 @@ var InputField = function InputField(_ref) {
         fieldOptions["readOnly"] = "readOnly";
     }
 
-    if (error) {
-        fieldOptions["error"] = "error";
+    if (status) {
+        fieldOptions["status"] = "status";
     }
 
     var handleChange = function handleChange(event) {
@@ -27167,10 +27165,10 @@ var InputField = function InputField(_ref) {
         }, fieldOptions, {
             onChange: handleChange
         }, rest)),
-        error && _react2.default.createElement(
+        statusMessage && _react2.default.createElement(
             "span",
             null,
-            error
+            statusMessage
         )
     );
 };
@@ -27187,7 +27185,8 @@ InputField.propTypes = {
     type: _propTypes2.default.string,
     label: _propTypes2.default.string,
     readOnly: _propTypes2.default.bool,
-    error: _propTypes2.default.string
+    status: _propTypes2.default.string,
+    statusMessage: _propTypes2.default.string
 };
 
 InputField.defaultProps = {
@@ -27196,7 +27195,8 @@ InputField.defaultProps = {
     block: true,
     type: "text",
     readOnly: false,
-    error: ""
+    status: "",
+    statusMessage: ""
 };
 
 exports.default = InputField;

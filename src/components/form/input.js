@@ -25,7 +25,7 @@ const StyledInput = styled.input`
             max-width: ${props => (props.expanded ? "100%" : "10em")};
             height: ${props => props.theme.input.sizes[props.size]}em;
             border-radius: ${props => props.theme.input.radius}em;
-            border: 1px solid ${props => (props.status ? props.theme.input.colors[props.status] : props.theme.input.borderColor)};
+            border: 1px solid ${props => (props.status ? props.theme.input.colors[props.status] : props.theme.input.borderColor)}; #${props.status}
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
             padding: 0 ${props => props.theme.input.sizes[props.size] / 4}em;
             margin: 0
@@ -74,6 +74,8 @@ const InputField = ({
                 name={name}
                 {...fieldOptions}
                 onChange={handleChange}
+                status={status}
+                statusMessage={statusMessage}
                 {...rest}
             />
             {statusMessage && <span>{statusMessage}</span>}
